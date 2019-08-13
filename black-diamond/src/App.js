@@ -13,7 +13,7 @@ class App extends Component {
       showCart: false
     };
   }
-  componentDidMount() {
+  componentDidMount = () => {
     axios
       .get("https://practiceapi.devmountain.com/products/")
       .then(response => {
@@ -22,23 +22,30 @@ class App extends Component {
         });
       });
   }
-  addToCart(item) {
+  addToCart = (item) => {
+    console.log(item)
+    console.log(this.state.cart)
     this.setState({
       cart: [...this.state.cart, item]
     });
   }
-  removeFromCart(index) {
+  removeFromCart = (index) => {
     let cartCopy = this.state.cart.slice();
     cartCopy.splice(index, 1);
     this.setState({
       cart: cartCopy
     });
   }
-  navigate(location) {
+
+  navigate = (location) => {
     if (location === "cart") {
-      this.state.showCart = true;
+      this.setState({
+        showCart: true
+      })
     } else {
-      this.state.showCart = false;
+      this.setState({
+        showCart: false
+      })
     }
   }
   render() {
